@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<view class="container">
+
+<!--mask-->  
+<view class="toast_mask" animation="{{count}}" wx:if="{{isShowToast}}"></view>  
+<!--以下为toast显示的内容-->  
+<view class="toast_content_box" wx:if="{{isShowToast}}">  
+  <view class="toast_content">  
+    <view class="toast_content_text">  
+      {{toastText}}  
+    </view>  
+  </view>  
+</view>  
+<image  class="indexbanner"  src="../../images/banner.png"></image>
+<image class="indexsao" bindtap="saoma" src="../../images/ercode.png"></image>
+
+<image class="indexsao" bindtap="listTab" src="../../images/list.png"></image>
+
+<image class="indexsao" bindtap="unuserBnding" src="../../images/binding.png"></image>
+</view>
+
+
+
+

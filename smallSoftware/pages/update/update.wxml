@@ -1,0 +1,113 @@
+<view class="container">
+  <!-- <view class="view-person">
+      <image src='../../images/left.png' class='image-item' bindtap="back"></image>
+      <text class='text-top'>修改</text>
+  </view> -->
+  <view class="login-from">
+    <form bindsubmit="formSubmit">
+      <!--车牌号-->
+      <view class="inputView">
+        <label class="label-color">*</label>
+        <label for="carNo" class="loginLab">车牌号</label>
+        <input id="carNo" name="carNo" class="inputText" placeholder="请输入车牌号" value="{{sysCars.carNo}}" type="text" />
+      </view>
+      <view class="line"></view>
+      <!--载重-->
+      <view class="inputView">
+        <label class="label-color">*</label>
+        <label for="ton" class="loginLab">载重（吨）</label>
+        <input id="ton" name="ton" class="inputText" placeholder="请输入载重" value="{{sysCars.ton}}" bindinput="" />
+      </view>
+      <view class="line"></view>
+      <!--手机号-->
+      <view class="inputView">
+        <label class="label-color">*</label>
+        <label for="mobile" class="loginLab">手机号</label>
+        <input id="mobile" name="mobile" class="inputText" placeholder="请输入手机号" value="{{sysDriver.mobile}}" />
+      </view>
+      <view class="line"></view>
+      <!--司机姓名-->
+      <view class="inputView">
+        <label class="label-color">*</label>
+        <label for="userName" class="loginLab">用户名</label>
+        <input id="userName" name="userName" class="inputText" placeholder="请输入6-20位用户名" value="{{sysDriver.userName}}" />
+      </view>
+      <view class="line"></view>
+      <!--登录密码-->
+      <view class="inputView">
+        <label class="label-color">*</label>
+        <label for="userPwd" class="loginLab">登录密码</label>
+        <input id="userPwd" name="userPwd" class="inputText" placeholder="请设置6-20位密码" type="password" value="{{sysDriver.password}}" />
+      </view>
+      <view class="line"></view>
+      <!--身份证号-->
+      <view class="inputView">
+        <label class="label-gray">*</label>
+        <label for="identNo" class="loginLab">身份证号</label>
+        <input id="identNo" name="identNo" class="inputText" placeholder="请输入身份证号" value="{{sysDriver.identNo}}" />
+      </view>
+      <view class="line"></view>
+      <!--年龄-->
+      <view class="inputView">
+        <label class="label-gray">*</label>
+        <label for="age" class="loginLab">年龄</label>
+        <input id="age" name="age" class="inputText" placeholder="请输入年龄" value="{{sysDriver.age}}" />
+      </view>
+      <view class="line"></view>
+      <!--性别-->
+      <view class="inputView">
+        <label class="label-gray">*</label>
+        <label for="sex" class="loginLab">性别</label>
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio" wx:for="{{items}}" wx:key="name">
+            <radio value="{{item.name}}" checked="{{item.checked}}" color='#F08619'/>{{item.value}}
+          </label>
+        </radio-group>
+      </view>
+      <view class="line"></view>
+      <!--有效证件图片-->
+      <view class="inputView">
+        <label class="label-color">*</label>
+        <image src="../../images/licenceImage.png" bindtap="uploadLicenceImage"></image>
+        <image class="image1" src="../../images/runImage.png" bindtap="uploadRunImage"></image>
+        <image class="image2" src="../../images/jia.png" bindtap="uploadTransportImage"></image>
+      </view>
+      <view class="inputView">
+        <label class="label-gray">*</label>
+        <label class="loginLab ziti" bindtap="uploadLicenceImage">上传本人驾照</label>
+        <label class="loginLab ziti1" bindtap="uploadRunImage">上传行驶证</label>
+        <label class="loginLab ziti2" bindtap="uploadTransportImage">上传运营证</label>
+      </view>
+      <view class="inputView">
+        <block wx:for="{{tempFilePaths}}" wx:key="{{index}}">
+          <image src="{{item }}" bindtap="listenerButtonPreviewLicenceImage" data-index="{{index}}" class="previewImage" />
+        </block>
+        <block wx:for="{{tempFilePaths1}}" wx:key="{{index}}">
+          <image src="{{item }}" bindtap="listenerButtonPreviewRunImage" data-index="{{index}}" class="previewImage1" />
+        </block>
+        <block wx:for="{{tempFilePaths2}}" wx:key="{{index}}">
+          <image src="{{item }}" bindtap="listenerButtonPreviewTransportImage" data-index="{{index}}" class="previewImage2" />
+        </block>
+      </view>
+      <view class="line"></view>
+      <!--住址-->
+      <view class="inputView">
+        <label class="label-gray">*</label>
+        <label for="address" class="loginLab">地址</label>
+        <input id="address" name="address" class="inputText" placeholder="请输入居住地址" value="{{sysDriver.address}}" type="textarea" />
+      </view>
+      <view class="line"></view>
+      <!--车描述-->
+      <view class="inputView">
+        <label class="label-gray">*</label>
+        <label for="carDesc" class="loginLab">车描述</label>
+        <input id="carDesc" name="carDesc" class="inputText" placeholder="请输入车描述" value="{{sysCars.carDesc}}" type="textarea" />
+      </view>
+      <view class="line"></view>
+      <div class="btns">
+        <button formType="submit" class="btn_register" disabled="{{disabled}}">修改</button>
+        <button bindtap="back" class="btn_back">返回</button>
+      </div>
+    </form>
+  </view>
+</view>

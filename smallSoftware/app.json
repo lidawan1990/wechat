@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/loading/loading",
+    "pages/list/list",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/detail/detail",
+    "pages/myCenter/myCenter",
+    "pages/update/update",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "能源汇",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#f08519",
+    "backgroundColor":"#f8f8f8",
+    "list": [
+      {
+        "selectedIconPath": "images/orderpng1.png",
+        "iconPath": "images/orderpng.png",
+        "pagePath": "pages/list/list",
+        "text": "订单管理"
+      },
+      {
+        "selectedIconPath": "images/person1.png",
+        "iconPath": "images/person.png",
+        "pagePath": "pages/myCenter/myCenter",
+        "text": "个人中心"
+      }
+    ]
+  }, 
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  }
+}

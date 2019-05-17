@@ -1,0 +1,123 @@
+page {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f1f1f1;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 250rpx;
+  height: 250rpx;
+  border-radius: 50%;
+  margin-top: 5%;
+}
+
+.image-item {
+  width: 10px;
+  height: 10px;
+}
+
+.view-top {
+  width: 100%;
+  height: 26%;
+  background-color: #F08619;
+}
+
+.view-person image {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.text-top {
+  font-size:24px;
+  color:#fff;
+  display:inline-block;
+  vertical-align:top;
+  text-align:center;
+  width:100%;
+}
+
+.view-person {
+  margin-top: 5%;
+}
+
+.login-from {
+  width: 100%;
+  margin-top: 100px;
+  flex: auto;
+  height: 100%;
+  padding-bottom: 40px;
+  background-color: #f1f1f1;
+}
+
+.inputView {
+  background-color: #fff;
+  line-height: 40px;
+}
+
+/*输入框*/
+
+.nameImage, .keyImage {
+  margin-left: 22px;
+  width: 14px;
+  height: 14px;
+}
+
+.loginLab {
+  width: 25%;
+  display: inline-block;
+  margin-left: 18px;
+  font-size: 18px;
+}
+
+.inputText {
+  flex: block;
+  margin-top: 1px;
+  color: #696969;
+  font-size: 14px;
+  position: relative;
+}
+
+.line {
+  height: 1px;
+  background-color: #ccc;
+  margin-top: 1px;
+}
+
+/*按钮*/
+
+.loginBtnView {
+  width: 100%;
+  height: auto;
+  background-color: #f2f2f2;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  padding-bottom: 0px;
+}
+
+.loginBtn {
+  width: 92%;
+  margin-top: 40px;
+  color: #fff;
+  background-color: #F08619;
+}
+
+.unbindingBtn {
+  width: 92%;
+  margin-top: 20px;
+  color: #fff;
+  background-color: #47adca;
+}

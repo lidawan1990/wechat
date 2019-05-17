@@ -1,0 +1,197 @@
+<view class="view-head">
+  <!--头部标题-->
+  <view class="view-person">
+    <div class='view-top'>
+      <!-- <image src='../../images/leftArrow.png' class='image-item' bindtap='back'></image> -->
+      <text class='text-top' style="">我的任务</text>
+    </div>
+  </view>
+  <!--tab切换-->
+  <view class="top-tab flex-wrp flex-tab ">
+    <view class="toptab flex-item" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab" wx:key="name1">
+      <text class="{{currentNavtab==idx ? 'active' : ''}}">{{itemName.name}}</text> <span class='badge'>{{itemName.num}}</span>
+    </view>
+  </view>
+</view>
+<view class="box">
+  <!--内容区域-->
+  <scroll-view scroll-y="true" class="container discovery withtab" style="width:100%;" bindscrolltoupper="upper" bindscrolltolower="lower" scroll-into-view="" scroll-top="{{scrollTop}}" lower-threshold='' scroll="scroll">
+    <view class='block'></view>
+    <!--待完成内容区域-->
+    <view class="ctnt0 placehold" hidden="{{currentNavtab==0 ? '' : true}}">
+      <block wx:for="{{bill}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" wx:key="name1">
+        <view class="feed-box">
+          <view class="feed-item">
+            <view class="yuanjiao"></view>
+            <view class="content">
+              <view class="item">
+                <image src="../../images/huo.png"></image>
+                <label>运单号：</label>
+                <text class="textWidth text-block">{{item.sn}}</text>
+              </view>
+              <view class="inline-block">
+                <view class="item drive-left">
+                  <image src="../../images/orderNo.png"></image>
+                  <label>货品：</label>
+                  <text wx:if="{{item.name!=null}}">{{item.name}},{{item.ton}}t</text>
+                  <text wx:else>{{item.ton}}t</text>
+                </view>
+                <view class="item item-block">
+                  <image src="../../images/licheng.png"></image>
+                  <label>里程数：</label>
+                  <text wx:if="{{item.distance!=null}}">{{item.distance}}公里</text>
+                </view>
+              </view>
+              <view class="item">
+                <image src="../../images/start.png"></image>
+                <label>始发地：</label>
+                <text class="textWidth text-block">{{item.originAddress}}</text>
+              </view>
+              <view class="item">
+                <image src="../../images/dingwei.png"></image>
+                <label>目的地：</label>
+                <text class="textWidth text-block">{{item.destination}}</text>
+              </view>
+              <view class="item">
+                <image src="../../images/time.png"></image>
+                <label>取货时间：</label>
+                <block wx:if="{{item.pickupTime!=null}}">
+                  <text>{{item.pickupTime}}</text>
+                </block>
+              </view>
+              <view class="item">
+                <image src="../../images/time.png"></image>
+                <label>派单时间：</label>
+                <block wx:if="{{item.sendTime!=null}}">
+                  <text>{{item.sendTime}}</text>
+                </block>
+              </view>
+            </view>
+          </view>
+          <view class="item-right" bindtap="billDetail" id="{{item.id}}">
+            <text>处理</text>
+          </view>
+        </view>
+        
+      </block>
+      <block wx:if="{{isShowBill=='0'}}">
+        <view class="weui-loadmore">
+          <view class="weui-loadmore__tips"></view>
+        </view>
+      </block>
+      <block wx:elif="{{isShowBill=='1'}}">
+        <view class="weui-loadmore">
+          <view class="weui-loadmore__tips">暂无数据</view>
+        </view>
+      </block>
+      <block wx:elif="{{isShowBill=='2'}}">
+        <view class="weui-loadmore">
+          <view class="weui-loadmore__tips">下拉加载更多</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="weui-loadmore">
+          <view class="weui-loadmore__tips">数据加载完成</view>
+        </view>
+      </block>
+      <!--
+      <view class='get-code' wx:if="{{isShowBill}}">数据已加载完成</view>
+      -->
+    </view>
+    <!--已完成内容区域-->
+    <view class="ctnt1 placehold" hidden="{{currentNavtab==1 ? '' : true}}">
+      <block wx:for="{{billDone}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" wx:key="name">
+        <view class="feed-box">
+          
+          <view class="feed-item">
+            <view class="yuanjiao1"></view>
+            <view class="content">
+              <view class="item">
+                <image src="../../images/huo.png"></image>
+                <label>运单号：</label>
+                <text class="textWidth text-block">{{item.sn}}</text>
+              </view>
+              <view class="inline-block">
+                <view class="item drive-left">
+                  <image src="../../images/orderNo.png"></image>
+                  <label>货品：</label>
+                  <text wx:if="{{item.name!=null}}">{{item.name}},{{item.ton}}t</text>
+                  <text wx:else>{{item.ton}}t</text>
+                </view>
+                <view class="item item-block">
+                  <image src="../../images/licheng.png"></image>
+                  <label>里程数：</label>
+                  <text wx:if="{{item.distance!=null}}">{{item.distance}}公里</text>
+                </view>
+              </view>
+              <view class="item">
+                <image src="../../images/start.png"></image>
+                <label>始发地：</label>
+                <text class="textWidth text-block">{{item.originAddress}}</text>
+              </view>
+              <view class="item">
+                <image src="../../images/dingwei.png"></image>
+                <label>目的地：</label>
+                <text class="textWidth text-block">{{item.destination}}</text>
+              </view>
+              <view class="item">
+                <image src="../../images/time.png"></image>
+                <label>取货时间：</label>
+                <text wx:if="{{item.pickupTime!=null}}">{{item.pickupTime}}</text>
+              </view>
+              <view class="item">
+                <image src="../../images/time.png"></image>
+                <label>派单时间：</label>
+                <block wx:if="{{item.sendTime!=null}}">
+                  <text>{{item.sendTime}}</text>
+                </block>
+              </view>
+            </view>
+          </view>
+          <view class="item-right" bindtap="billDetail" id="{{item.id}}">
+            <text>查看</text>
+          </view>
+        </view>
+        
+      </block>
+      <block wx:if="{{isShowBillDone=='0'}}">
+        <view class="weui-loadmore">
+          <view class="weui-loadmore__tips"></view>
+        </view>
+      </block>
+      <block wx:elif="{{isShowBillDone=='1'}}">
+        <view class="weui-loadmore">
+          <view class="weui-loadmore__tips">暂无数据</view>
+        </view>
+      </block>
+      <block wx:elif="{{isShowBillDone=='2'}}">
+        <view class="weui-loadmore">
+          <view class="weui-loadmore__tips">下拉加载更多</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="weui-loadmore">
+          <view class="weui-loadmore__tips">数据加载完成</view>
+        </view>
+      </block>
+      <!--
+      <view class='get-code' wx:if="{{isShowBillDone}}">数据已加载完成</view>
+      -->
+    </view>
+
+  </scroll-view>
+</view>
+<!--底部菜单-->
+<!-- <view class="view-footer">
+  <div class="div-bottom">
+    <div class='div-order'>
+      <image src='../../images/orderItem.png' class=' order'></image>
+      <text class='text-bottom' bindtap="myOrder">订单管理</text>
+    </div>
+    <div class='div-person'>
+      <image src='../../images/name1.png' class='image-item'></image>
+      <text class='text-bottom' style="color:white;" bindtap="myCenter">个人中心</text>
+    </div>
+  </div>
+
+</view> -->

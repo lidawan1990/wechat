@@ -1,0 +1,107 @@
+<view class="view-head">
+  <!--头部标题-->
+  <!-- <image src='../../images/leftArrow.png' class='image-item' bindtap='back'></image> -->
+  <text class='text-top' style="">订单管理</text>
+  <image src='../../images/tel.png' class='image-item1' bindtap='tel'></image>
+</view>
+<view class="feed-item">
+  <view class="item">
+    <image src="../../images/orderNo.png"></image>
+    <label>订单编号：</label>
+    <text>{{orderSn}}</text>
+  </view>
+  <view class="item">
+    <image src="../../images/huo.png"></image>
+    <label>运单编号：</label>
+    <text>{{bill.sn}}</text>
+  </view>
+  <view class="line"></view>
+  <view class="item driver-left">
+    <image src="../../images/driver.png"></image>
+    <label>收货人姓名：</label>
+    <text>{{customerName}}</text>
+  </view>
+  <view class="item">
+    <image src="../../images/carNo.png"></image>
+    <label>电话：</label>
+    <text>{{customerPhone}}</text>
+  </view>
+  <view class="item-one">
+    <image src="../../images/start.png"></image>
+    <label>始发地：</label>
+    <text class="text-block">{{bill.originAddress}}</text>
+  </view>
+  <view class="item-one">
+    <image src="../../images/dingwei.png"></image>
+    <label>目的地：</label>
+    <text class="text-block">{{bill.destination}}</text>
+  </view>
+  <view class="item driver-left">
+    <image src="../../images/order.png"></image>
+    <label>订单金额：</label>
+    <text>￥{{bill.orderAmount}}元</text>
+  </view>
+  <view class="item driver-left">
+    <image src="../../images/money.png"></image>
+    <label>运单金额：</label>
+    <text>￥{{bill.amount}}元</text>
+  </view>
+  <view class="item">
+    <image src="../../images/money.png"></image>
+    <label>运单状态：</label>
+    <text wx:if="{{billStatus==1}}">已派送</text>
+    <text wx:if="{{billStatus==2}}">已接单</text>
+    <text wx:if="{{billStatus==3}}">装货中</text>
+    <text wx:if="{{billStatus==4}}">待收货</text>
+    <text wx:if="{{billStatus==5}}">已送达 </text>
+    <text wx:if="{{billStatus==6}}">已完成 </text>
+  </view>
+  <block wx:if="{{billStatus==6}}">
+    <view class="line"></view>
+    <view class="inputView" style="margin-bottom:10px;">
+      <label class="label-gray">*</label>
+      <label class="loginLab ziti">送货单信息</label>
+    </view>
+    <view class="inputView" style="margin-bottom:20px;">
+      <block wx:for="{{bill.pics}}" wx:key="index">
+        <view class='logoinfo'>
+          <image src='{{item}}' class="image1" bindtap="previewImage1" data-index="{{index}}" style="margin-left:35px;"></image>
+        </view>
+      </block>
+    </view>
+    <view class="line"></view>
+  </block>
+
+  <block wx:if="{{billStatus==5}}">
+    <view class="line"></view>
+    <view class="inputView" style="margin-bottom:10px;">
+      <label class="label-color">*</label>
+      <label class="loginLab ziti">上传送货单信息</label>
+    </view>
+    <view class="inputView" style="margin-bottom:20px;">
+      <block wx:for="{{tempFilePaths}}" wx:key="index">
+        <view class='logoinfo'>
+          <image src='{{item}}' class="image1" bindtap="previewImage" data-index="{{index}}" style="margin-left:35px;"></image>
+          <!-- 删除按钮 -->
+          <!-- <view class="delete" bindtap="deleteImg" data-index="{{index}}">X</view> -->
+        </view>
+      </block>
+      <image wx:if="{{tempFilePaths.length<3}}"  class="image2" src="../../images/upload.png" bindtap="upload"></image>
+    </view>
+    <view class="line"></view>
+  </block>
+  <!--底部菜单-->
+  <view class="view-footer">
+    <block wx:if="{{billStatus==6}}">
+      <view class='div-order onlyOne' bindtap="back">返回</view>
+    </block>
+    <block wx:else>
+      <view class='div-order' bindtap="back">返回</view>
+      <view class='div-person' style="color:white;" bindtap="update" wx:if="{{billStatus==1}}">接单确认</view>
+      <view class='div-person' style="color:white;" bindtap="update" wx:if="{{billStatus==2}}">装货确认</view>
+      <view class='div-person' style="color:white;" bindtap="update" wx:if="{{billStatus==3}}">发货确认</view>
+      <view class='div-person' style="color:white;" bindtap="update" wx:if="{{billStatus==4}}">送达确认</view>
+      <view class='div-person' style="color:white;" bindtap="update" wx:if="{{billStatus==5}}">收货确认</view>
+    </block>
+  </view>
+</view>

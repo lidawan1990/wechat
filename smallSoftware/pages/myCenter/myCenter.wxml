@@ -1,0 +1,52 @@
+<view class="container">
+  <view class="view-top">
+    <view class="view-person">
+      <!-- <div class='' bindtap='back' style="padding-left:10px;">
+        <image src='../../images/leftArrow.png' class='image-item'></image>
+      </div> -->
+      <div class='text-top'>
+        <text class=''>个人中心</text>
+      </div>
+    </view>
+    <view class="userinfo">
+      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+
+  </view>
+  <view class="login-from">
+
+    <!--车牌-->
+    <view class="inputView">
+      <image class="nameImage" src="../../images/carNo2.png"></image>
+      <label class="loginLab">车牌：</label>
+      <text class="inputText">{{sysCars.carNo}}</text>
+    </view>
+    <view class="line"></view>
+
+    <!--手机号-->
+    <view class="inputView">
+      <image class="keyImage" src="../../images/phone.png"></image>
+      <label class="loginLab">手机号：</label>
+      <text class="inputText">{{phoneFormat}}</text>
+    </view>
+    <view class="line"></view>
+    <!--载重-->
+    <view class="inputView">
+      <image class="keyImage" src="../../images/ton.png"></image>
+      <label class="loginLab">载重：</label>
+      <text class="inputText">{{sysCars.ton}}t</text>
+    </view>
+    <view class="line"></view>
+    <!--按钮-->
+    <view class="loginBtnView">
+      <button class="loginBtn" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="updateUserInfo">修改信息</button>
+    </view>
+    <view class="loginBtnView">
+      <button class="unbindingBtn" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="unbindingUser">解除绑定</button>
+    </view>
+  </view>
+</view>
